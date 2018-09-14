@@ -1,3 +1,6 @@
 [submodule "jenkins-bootstrap-shared"]
 	path = jenkins-bootstrap-shared
 	url = https://github.com/samrocketman/jenkins-bootstrap-shared
+[submodule "jervis"]
+	path = jervis
+	url = https://github.com/samrocketman/jervis.git
