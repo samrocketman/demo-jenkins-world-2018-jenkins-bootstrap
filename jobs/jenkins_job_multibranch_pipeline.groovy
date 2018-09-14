@@ -64,6 +64,16 @@ jenkinsJobMultibranchPipeline = { String JERVIS_BRANCH ->
                                     tagExcludes ''
                                 }
                             }
+                            cloneOptionTrait {
+                                extension {
+                                    shallow(false)
+                                    noTags(false)
+                                    reference('/home/jenkins/demo-reference-repo.git')
+                                    timeout(10)
+                                    depth(0)
+                                    honorRefspec(false)
+                                }
+                            }
                         }
                     }
                 }
