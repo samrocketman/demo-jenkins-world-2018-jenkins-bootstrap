@@ -1,0 +1,23 @@
+{
+    "defaults": {
+        "platform": "docker-in-docker",
+        "os": "alpinejdk8",
+        "stability": "stable",
+        "sudo": "sudo"
+    },
+    "supported_platforms": {
+        "docker-in-docker": {
+            "alpinejdk8": {
+                "language": [
+                    "java",
+                    "shell"
+                ],
+                "toolchain": [
+                    "env",
+                    "jdk"
+                ]
+            }
+        }
+    },
+    "restrictions": {}
+}

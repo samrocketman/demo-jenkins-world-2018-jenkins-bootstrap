@@ -1,0 +1,22 @@
+{
+    "toolchains": {
+        "java": ["env", "jdk"],
+        "shell": ["env"]
+    },
+    "env": {
+        "matrix": "advanced",
+        "*": [
+            "export ${jervis_toolchain_ivalue}"
+        ]
+    },
+    "jdk": {
+        "default_ivalue": "openjdk8",
+        "friendlyLabel": true,
+        "openjdk8": [
+            "export JAVA_HOME=\"/usr/lib/jvm/java-1.8-openjdk\"",
+            "export PATH=\"${JAVA_HOME}/bin:${PATH}\"",
+            "java -Xmx32m -version",
+            "javac -J-Xmx32m -version"
+        ]
+    }
+}
