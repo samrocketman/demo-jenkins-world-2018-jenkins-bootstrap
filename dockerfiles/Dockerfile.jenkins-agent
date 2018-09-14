@@ -9,4 +9,14 @@ sed -i 's/^\(wheel:.*\)/\1,jenkins/' /etc/group
 
 USER jenkins
 WORKDIR /home/jenkins
+
+# preseed build dependencies to make the demo faster
+RUN set -ex; \
+git clone https://github.com/samrocketman/demo-jenkins-world-2018-groovy-jar.git; \
+cd demo-jenkins-world-2018-groovy-jar/; \
+./gradlew clean check groovydoc assemble; \
+GROOVY_VERSION=2.6.0-alpha-4 ./gradlew clean check groovydoc assemble; \
+cd ..; \
+rm -rf demo-jenkins-world-2018-groovy-jar
+
 CMD /bin/bash
