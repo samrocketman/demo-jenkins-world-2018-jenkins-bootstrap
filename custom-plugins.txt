@@ -1,0 +1,22 @@
+# The following snapshot is compiled from:
+# https://github.com/jenkinsci/pipeline-multibranch-defaults-plugin/pull/3
+# This plugin must be built and installed in the local maven cache before
+# building Jenkins.
+# Build Environment:
+#     Ubuntu 16.04.5 LTS
+#     Linux 4.4.0-135-generic x86_64
+#     GNU bash, version 4.3.48(1)-release (x86_64-pc-linux-gnu)
+#     Gradle 4.1
+#     Build time: 2017-08-07 14:38:48 UTC
+#     Revision: 941559e020f6c357ebb08d5c67acdb858a3defc2
+#     Groovy: 2.4.11
+#     Ant: Apache Ant(TM) version 1.9.6 compiled on June 29 2015
+#     JVM: 1.8.0_131 (Oracle Corporation 25.131-b11)
+#     OS: Linux 4.4.0-135-generic amd64
+# Build instructions:
+#     git clone https://github.com/jenkinsci/pipeline-multibranch-defaults-plugin
+#     cd pipeline-multibranch-defaults-plugin/
+#     git fetch origin refs/pull/3/head
+#     git checkout FETCH_HEAD
+#     mvn clean package install
+org.jenkins-ci.plugins:pipeline-multibranch-defaults:1.2-SNAPSHOT@hpi
