@@ -1,0 +1,12 @@
+FROM openjdk:8-alpine
+
+RUN set -ex; \
+apk add --no-cache sudo bash git; \
+echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel_grp_sudo; \
+addgroup -g 7000 -S jenkins; \
+adduser -u 7000 -G jenkins -h /home/jenkins -S jenkins; \
+sed -i 's/^\(wheel:.*\)/\1,jenkins/' /etc/group
+
+USER jenkins
+WORKDIR /home/jenkins
+RUN /bin/bash
