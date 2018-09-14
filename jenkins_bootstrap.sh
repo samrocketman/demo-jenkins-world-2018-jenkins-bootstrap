@@ -54,6 +54,7 @@ jenkins_console -s "${SCRIPT_LIBRARY_PATH}/configure-grape-ivy-xml.groovy"
 jenkins_console -s ./configs/jenkins-master.groovy -s "${SCRIPT_LIBRARY_PATH}"/configure-jenkins-settings.groovy
 
 # configure default Jenkinsfile which runs for all projects
+jenkins_console -s ./configs/shared-pipelines.groovy -s "${SCRIPT_LIBRARY_PATH}"/configure-pipeline-global-shared-libraries.groovy
 jenkins_console -s ./configs/global-jenkinsfile.groovy -s "${SCRIPT_LIBRARY_PATH}/configure-global-jenkinsfile.groovy"
 
 # configure credentials
