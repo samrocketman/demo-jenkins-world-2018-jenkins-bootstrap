@@ -51,6 +51,7 @@ jenkins_console -s "${SCRIPT_LIBRARY_PATH}/configure-markup-formatter.groovy"
 jenkins_console -s "${SCRIPT_LIBRARY_PATH}/configure-job-dsl-security.groovy"
 jenkins_console -s "${SCRIPT_LIBRARY_PATH}/configure-jnlp-agent-protocols.groovy"
 jenkins_console -s "${SCRIPT_LIBRARY_PATH}/configure-grape-ivy-xml.groovy"
+jenkins_console -s ./configs/jenkins-master.groovy -s "${SCRIPT_LIBRARY_PATH}"/configure-jenkins-settings.groovy
 
 # configure default Jenkinsfile which runs for all projects
 jenkins_console -s ./configs/global-jenkinsfile.groovy -s "${SCRIPT_LIBRARY_PATH}/configure-global-jenkinsfile.groovy"
