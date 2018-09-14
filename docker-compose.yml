@@ -19,7 +19,12 @@ services:
         # preseed jenkins agent
         docker pull samrocketman/demo-jenkins-world-2018:jenkins-agent
         # preseed build dependencies for generating jobs to speed up demo
-        su - -s /bin/bash jenkins -c '/bin/bash -exc "export JAVA_HOME=/opt/jdk; repo=https://github.com/samrocketman/demo-jenkins-world-2018-jenkins-bootstrap; git clone \$$repo; pushd \$${repo##*/}; ./gradlew -b gradle/jervis.gradle clean libs"'
+        su - -s /bin/bash jenkins -c '/bin/bash -exc "export JAVA_HOME=/opt/jdk; repo=https://github.com/samrocketman/demo-jenkins-world-2018-jenkins-bootstrap; git clone \$$repo; pushd \$${repo##*/}; ./gradlew -b gradle/jervis.gradle clean libs; popd; rm -rf \$${repo##*/}"'
+        # create a reference repository
+        su - -s /bin/bash jenkins -c '/bin/bash -exc "repo=demo-reference-repo.git; mkdir \$${repo};cd \$${repo}; git init --bare"'
+        su - -s /bin/bash jenkins -c '/bin/bash -exc "cd demo-reference-repo.git; git fetch https://github.com/samrocketman/demo-jenkins-world-2018-jenkins-bootstrap +refs/*:refs/*"'
+        su - -s /bin/bash jenkins -c '/bin/bash -exc "cd demo-reference-repo.git; git fetch https://github.com/samrocketman/jenkins-bootstrap-shared +refs/*:refs/*"'
+        su - -s /bin/bash jenkins -c '/bin/bash -exc "cd demo-reference-repo.git; git fetch https://github.com/samrocketman/jervis +refs/*:refs/*"'
         # grant Jenkins access to use docker in docker
         sed -i 's/^\(docker:.*\)/\1jenkins/' /etc/group
         su - -s /bin/bash jenkins -c '/bin/bash -c "JAVA_HOME=/opt/jdk /run.sh"'
