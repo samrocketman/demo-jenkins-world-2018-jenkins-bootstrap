@@ -16,7 +16,11 @@ services:
         cd /tmp
         nohup dockerd &
         until test -e /var/run/docker.sock; do sleep 1; done
+        # preseed jenkins agent
         docker pull samrocketman/demo-jenkins-world-2018:jenkins-agent
+        # preseed build dependencies for generating jobs to speed up demo
+        su - -s /bin/bash jenkins -c '/bin/bash -exc "export JAVA_HOME=/opt/jdk; repo=https://github.com/samrocketman/demo-jenkins-world-2018-jenkins-bootstrap; git clone \$$repo; pushd \$${repo##*/}; ./gradlew -b gradle/jervis.gradle clean libs"'
+        # grant Jenkins access to use docker in docker
         sed -i 's/^\(docker:.*\)/\1jenkins/' /etc/group
         su - -s /bin/bash jenkins -c '/bin/bash -c "JAVA_HOME=/opt/jdk /run.sh"'
     privileged: true

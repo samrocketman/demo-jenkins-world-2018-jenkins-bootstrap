@@ -10,8 +10,8 @@ configurations {
     libs
 }
 dependencies {
-    libs 'net.gleske:jervis:1.1'
-    libs 'org.yaml:snakeyaml:1.18'
+    libs 'net.gleske:jervis:1.2'
+    libs 'org.yaml:snakeyaml:1.21'
 }
 
 task libs(type: Copy) {
