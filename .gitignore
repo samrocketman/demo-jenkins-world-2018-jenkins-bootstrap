@@ -1,5 +1,5 @@
-/*.bak
 .gradle
+/*.bak
 /.vagrant
 /build
 /console.log
@@ -10,3 +10,4 @@
 /my_jenkins_home
 /plugins
 /ssh_config
+secret-env.sh
