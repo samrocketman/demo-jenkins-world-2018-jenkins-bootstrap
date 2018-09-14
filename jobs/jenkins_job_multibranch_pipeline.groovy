@@ -1,0 +1,110 @@
+/*
+   Copyright 2014-2018 Sam Gleske - https://github.com/samrocketman/jervis
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+   */
+
+//this code should be at the beginning of every script included which requires bindings
+require_bindings(
+    'jobs/jenkins_job_multibranch_pipeline.groovy',
+    [
+        'git_service',
+        'parent_job',
+        'project',
+        'project_folder',
+        'project_name',
+        'script_approval'
+    ]
+)
+
+/*
+   Configures a pipeline job designed to execute Jervis YAML.
+ */
+
+jenkinsJobMultibranchPipeline = null
+jenkinsJobMultibranchPipeline = { String JERVIS_BRANCH ->
+    //uses groovy bindings to properly reference the Job DSL; in this case parent_job
+    parent_job.multibranchPipelineJob([project_folder, project_name].join('/')) {
+        description(job_description)
+        //displayName(project_name)
+        branchSources {
+            branchSource {
+                source {
+                    github {
+                        //github
+                        id "owner-${project_folder}:repo-${project_name}"
+                        credentialsId 'clone-https'
+                        repoOwner project_folder
+                        repository project_name
+                        //behaviors not supported by job dsl
+
+                        //additional behaviors
+                        traits {
+                            if(default_generator && default_generator.filter_type == 'only' && default_generator.hasRegexFilter()) {
+                                headRegexFilterWithPR {
+                                    regex default_generator.getFullBranchRegexString(JERVIS_BRANCH.split(' ') as List)
+                                    tagRegex '.*'
+                                }
+                            }
+                            else {
+                                headWildcardFilterWithPR {
+                                    includes "${JERVIS_BRANCH}"
+                                    excludes ''
+                                    tagIncludes '*'
+                                    tagExcludes ''
+                                }
+                            }
+                        }
+                    }
+                }
+                buildStrategies {
+                    buildRegularBranches()
+                    buildChangeRequests {
+                        ignoreTargetOnlyChanges(false)
+                    }
+                    buildTags {
+                        atLeastDays ''
+                        // only build tags which were created within the past 24 hours
+                        atMostDays '1'
+                    }
+                }
+            }
+        }
+        orphanedItemStrategy {
+            discardOldItems {
+                numToKeep(20)
+            }
+        }
+        factory {
+            pipelineBranchDefaultsProjectFactory {
+                useSandbox true
+                scriptId 'Jenkinsfile'
+            }
+        }
+        configure {
+            def folderConfig = it / 'properties' / 'org.jenkinsci.plugins.pipeline.modeldefinition.config.FolderConfig'
+            folderConfig << dockerLabel('master')
+            folderConfig << registry()
+        }
+        configure {
+            def traits = it.sources.data.'jenkins.branch.BranchSource'.source.traits
+            traits[0].children().add 0, 'org.jenkinsci.plugins.github__branch__source.TagDiscoveryTrait'()
+            traits[0].children().add 0, 'org.jenkinsci.plugins.github__branch__source.ForkPullRequestDiscoveryTrait' {
+                strategyId('1')
+                trust(class: 'org.jenkinsci.plugins.github_branch_source.ForkPullRequestDiscoveryTrait$TrustEveryone')
+            }
+            traits[0].children().add 0, 'org.jenkinsci.plugins.github__branch__source.OriginPullRequestDiscoveryTrait' { strategyId('1') }
+            traits[0].children().add 0, 'org.jenkinsci.plugins.github__branch__source.BranchDiscoveryTrait' { strategyId('3') }
+        }
+    }
+}
