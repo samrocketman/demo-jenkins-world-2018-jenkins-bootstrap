@@ -1,5 +1,5 @@
 /*.bak
-/.gradle
+.gradle
 /.vagrant
 /build
 /console.log

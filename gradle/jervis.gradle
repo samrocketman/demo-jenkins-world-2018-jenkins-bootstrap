@@ -1,6 +1,11 @@
-//Add due to deprecated Grab support
-//https://github.com/samrocketman/jervis/issues/60
-//copied from https://github.com/samrocketman/jervis/blob/11f68fdd534ac804c231cab1d6f53d2b42bd20b1/gradle/jervis.gradle
+apply plugin: 'maven'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+//copied from https://github.com/samrocketman/jervis/blob/7989236b92f466b18a2a816560b3729fd16c7f9a/gradle/jervis.gradle
 configurations {
     libs
 }
@@ -10,11 +15,11 @@ dependencies {
 }
 
 task libs(type: Copy) {
-    into 'lib'
+    into '../lib'
     from configurations.libs
 }
 
 task cleanLibs(type: Delete) {
-    delete 'lib'
+    delete '../lib'
 }
 clean.dependsOn cleanLibs

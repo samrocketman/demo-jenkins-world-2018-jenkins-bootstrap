@@ -19,6 +19,3 @@ description = "Built from ${tokens['PACKAGENAME']} @ ${tokens['COMMIT']}"
 
 //Jenkins war and plugin versions
 apply from: 'dependencies.gradle'
-
-// Job DSL dependencies
-apply from: 'file:gradle/jervis.gradle'

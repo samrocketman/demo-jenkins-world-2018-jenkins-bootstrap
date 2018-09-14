@@ -65,7 +65,7 @@
   <concurrentBuild>true</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>./gradlew clean libs</command>
+      <command>./gradlew -b gradle/jervis.gradle clean libs</command>
     </hudson.tasks.Shell>
     <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.70">
       <targets>jervis/jobs/firstjob_dsl.groovy</targets>
