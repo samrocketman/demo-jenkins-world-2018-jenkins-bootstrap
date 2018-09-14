@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hudson.plugins.view.dashboard.Dashboard plugin="dashboard-view@2.9.11">
+  <name>Welcome</name>
+  <filterExecutors>false</filterExecutors>
+  <filterQueue>false</filterQueue>
+  <properties class="hudson.model.View$PropertyList"/>
+  <jobNames>
+    <comparator class="hudson.util.CaseInsensitiveComparator"/>
+  </jobNames>
+  <jobFilters/>
+  <columns>
+    <hudson.views.JobColumn/>
+    <hudson.views.BuildButtonColumn/>
+  </columns>
+  <includeRegex>^_jervis_generator</includeRegex>
+  <recurse>false</recurse>
+  <useCssStyle>false</useCssStyle>
+  <includeStdJobList>true</includeStdJobList>
+  <hideJenkinsPanels>false</hideJenkinsPanels>
+  <leftPortletWidth>50%</leftPortletWidth>
+  <rightPortletWidth>50%</rightPortletWidth>
+  <leftPortlets/>
+  <rightPortlets/>
+  <topPortlets>
+    <org.korosoft.jenkins.plugin.rtp.StaticTextPortlet plugin="rich-text-publisher-plugin@1.4">
+      <id>dashboard_portlet_4858</id>
+      <name>Bootstrapped Jenkins for Jervis</name>
+      <text>&lt;style&gt;
+/* hide distracting elements in the UI */
+div#side-panel, div#right-top-nav, div#description {
+    display: none;
+}
+table#projectstatus tbody tr.header {
+    display: none;
+}
+table#projectstatus tbody tr td:last-child {
+    display: none;
+}
+div.dashboard div:last-child {
+    display: none;
+}
+/* uses a CSS selector to hide portlet buttons */
+div[id^=title-dashboard_portlet] * {
+  display: none !important;
+}
+
+/* cleaner and clear borders and no drop shadows */
+table[id^=dashboard_portlet] {
+    border-width: 0px;
+}
+* {
+    box-shadow: none !important;
+}
+div.pane-frame {
+    border: 3px solid #f0f0f0;
+}
+
+/* change positioning of the generate job text for prominence */
+table#projectstatus tbody tr td {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    width: 50%;
+}
+table#projectstatus tbody tr td:first-child {
+    text-align: right;
+}
+div#page-body div#main-panel, div#main-panel {
+    margin-left: 0px;
+}
+
+/* responsive welcome message */
+@media screen and (min-width: 824px) {
+    div[id^=title-dashboard_portlet] {
+        width: 768px !important;
+    }
+    table[id^=dashboard_portlet] {
+        width: 768px !important;
+    }
+}
+@media screen and (max-width: 500px) {
+    table#projectstatus {
+        width: 450px !important;
+    }
+}
+
+/* cleaner welcome page */
+div[id^=title-dashboard_portlet] {
+    -moz-border-bottom-colors: none !important;
+    -moz-border-left-colors: none !important;
+    -moz-border-right-colors: none !important;
+    -moz-border-top-colors: none !important;
+    background-color: #f5f5f5 !important;
+    border-color: #d8d8d8 #d8d8d8 -moz-use-text-color !important;
+    border-image: none !important;
+    border-radius: 3px 3px 0 0 !important;
+    border-style: solid solid none !important;
+    border-width: 1px 1px 0 !important;
+    display: block !important;
+    font-size: 33px !important;
+    line-height: 55px !important;
+    padding: 10px 10px 10px !important;
+}
+table[id^=dashboard_portlet] {
+    background-color: #fff !important;
+    border: 1px solid #ddd !important;
+    border-bottom-left-radius: 3px !important;
+    border-bottom-right-radius: 3px !important;
+}
+table[id^=dashboard_portlet] tbody tr td {
+    padding: 30px !important;
+    word-wrap: break-word !important;
+    font-family: &quot;Helvetica Neue&quot;,Helvetica,&quot;Segoe UI&quot;,Arial,freesans,sans-serif !important;
+}
+table[id^=dashboard_portlet] tbody tr td p, table[id^=dashboard_portlet] tbody tr td li {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+}
+table[id^=dashboard_portlet] tbody tr td a {
+    color: #4078c0;
+    text-decoration: none;
+}
+table[id^=dashboard_portlet] tbody tr td a:hover, table[id^=dashboard_portlet] tbody tr td a:active {
+    text-decoration: underline;
+}
+table[id^=dashboard_portlet] tbody tr td tt, table[id^=dashboard_portlet] tbody tr td code, table[id^=dashboard_portlet] tbody tr td pre {
+    font-family: Consolas,&quot;Liberation Mono&quot;,Courier,monospace;
+    font-size: 14px;
+}
+
+/* &quot;markdown&quot;-like styled page content */
+h1, h2, h3, h4, h5, h6 {
+    cursor: text;
+    font-weight: bold;
+    line-height: 1.7;
+    margin: 1em 0 15px;
+    padding: 0;
+    position: relative;
+    text-rendering: optimizelegibility;
+}
+h1 {
+    border-bottom: 1px solid #ddd;
+    font-size: 2.5em;
+}
+h2 {
+    border-bottom: 1px solid #eee;
+    font-size: 2em;
+}
+h3 {
+    font-size: 1.5em;
+}
+h4 {
+    font-size: 1.2em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+    color: #777;
+    font-size: 1em;
+}
+code, tt {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    display: inline-block;
+    line-height: 1.3;
+    margin: 0;
+    max-width: 100%;
+    overflow: auto;
+    padding: 0px 1px 0px 1px;
+    vertical-align: middle;
+}
+code {
+    white-space: nowrap;
+}
+
+pre {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    line-height: 19px;
+    overflow: auto;
+    padding: 6px 10px;
+}
+pre &gt; code {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: medium none;
+    margin: 0;
+    padding: 0;
+    white-space: pre;
+}
+pre code, pre tt {
+    background-color: rgba(0, 0, 0, 0);
+    border: medium none;
+    display: inline;
+    line-height: inherit;
+    margin: 0;
+    max-width: initial;
+    overflow: initial;
+    padding: 0;
+    word-wrap: normal;
+}
+code:before, code:after, tt:before, tt:after {
+    content: &quot; &quot;;
+}
+pre code:before, pre code:after, pre tt:before, pre tt:after {
+    content: normal;
+}
+code:before, code:after, tt:before, tt:after {
+    content: &quot; &quot;;
+}
+pre code:before, pre code:after, pre tt:before, pre tt:after {
+    content: normal;
+}
+&lt;/style&gt;
+
+&lt;p&gt;Welcome to &lt;a href=&quot;https://github.com/samrocketman/jervis/wiki&quot;&gt;Jervis: Jenkins as a service&lt;/a&gt;.  This Jenkins instance was bootstrapped using the &lt;a href=&quot;https://github.com/samrocketman/jenkins-bootstrap-jervis&quot;&gt;jenkins-bootstrap-jervis project&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Developer&apos;s first steps&lt;/h3&gt;
+
+&lt;p&gt;Creating a project in Jenkins is simple.  Follow these three steps:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Add a &lt;tt&gt;.jervis.yml&lt;/tt&gt; file to your GitHub repository following the &lt;a href=&quot;https://github.com/samrocketman/jervis/wiki/User-Guide&quot;&gt;User Guide&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;Execute the &lt;tt&gt;Generate Jenkins Jobs from YAML&lt;/tt&gt; onboarding job by clicking &lt;img alt=&quot;Schedule a build with parameters&quot; src=&quot;/images/16x16/clock.png&quot; /&gt; icon.&lt;/li&gt;
+  &lt;li&gt;If creating your job succeeds, then visit the &lt;a href=&quot;/view/GitHub%20Organizations/&quot;&gt;GitHub Organizations View&lt;/a&gt; in the tabs above.
+&lt;/ol&gt;
+
+&lt;h3&gt;Documentation&lt;/h3&gt;
+
+&lt;p&gt;Visit the &lt;a href=&quot;https://github.com/samrocketman/jervis/wiki&quot;&gt;Jervis wiki&lt;/a&gt; for comprehensive documentation on how to configure and manage Jenkins as a service.&lt;/p&gt;</text>
+      <richText>&lt;style&gt;
+/* hide distracting elements in the UI */
+div#side-panel, div#right-top-nav, div#description {
+    display: none;
+}
+table#projectstatus tbody tr.header {
+    display: none;
+}
+table#projectstatus tbody tr td:last-child {
+    display: none;
+}
+div.dashboard div:last-child {
+    display: none;
+}
+/* uses a CSS selector to hide portlet buttons */
+div[id^=title-dashboard_portlet] * {
+  display: none !important;
+}
+
+/* cleaner and clear borders and no drop shadows */
+table[id^=dashboard_portlet] {
+    border-width: 0px;
+}
+* {
+    box-shadow: none !important;
+}
+div.pane-frame {
+    border: 3px solid #f0f0f0;
+}
+
+/* change positioning of the generate job text for prominence */
+table#projectstatus tbody tr td {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    width: 50%;
+}
+table#projectstatus tbody tr td:first-child {
+    text-align: right;
+}
+div#page-body div#main-panel, div#main-panel {
+    margin-left: 0px;
+}
+
+/* responsive welcome message */
+@media screen and (min-width: 824px) {
+    div[id^=title-dashboard_portlet] {
+        width: 768px !important;
+    }
+    table[id^=dashboard_portlet] {
+        width: 768px !important;
+    }
+}
+@media screen and (max-width: 500px) {
+    table#projectstatus {
+        width: 450px !important;
+    }
+}
+
+/* cleaner welcome page */
+div[id^=title-dashboard_portlet] {
+    -moz-border-bottom-colors: none !important;
+    -moz-border-left-colors: none !important;
+    -moz-border-right-colors: none !important;
+    -moz-border-top-colors: none !important;
+    background-color: #f5f5f5 !important;
+    border-color: #d8d8d8 #d8d8d8 -moz-use-text-color !important;
+    border-image: none !important;
+    border-radius: 3px 3px 0 0 !important;
+    border-style: solid solid none !important;
+    border-width: 1px 1px 0 !important;
+    display: block !important;
+    font-size: 33px !important;
+    line-height: 55px !important;
+    padding: 10px 10px 10px !important;
+}
+table[id^=dashboard_portlet] {
+    background-color: #fff !important;
+    border: 1px solid #ddd !important;
+    border-bottom-left-radius: 3px !important;
+    border-bottom-right-radius: 3px !important;
+}
+table[id^=dashboard_portlet] tbody tr td {
+    padding: 30px !important;
+    word-wrap: break-word !important;
+    font-family: &quot;Helvetica Neue&quot;,Helvetica,&quot;Segoe UI&quot;,Arial,freesans,sans-serif !important;
+}
+table[id^=dashboard_portlet] tbody tr td p, table[id^=dashboard_portlet] tbody tr td li {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+}
+table[id^=dashboard_portlet] tbody tr td a {
+    color: #4078c0;
+    text-decoration: none;
+}
+table[id^=dashboard_portlet] tbody tr td a:hover, table[id^=dashboard_portlet] tbody tr td a:active {
+    text-decoration: underline;
+}
+table[id^=dashboard_portlet] tbody tr td tt, table[id^=dashboard_portlet] tbody tr td code, table[id^=dashboard_portlet] tbody tr td pre {
+    font-family: Consolas,&quot;Liberation Mono&quot;,Courier,monospace;
+    font-size: 14px;
+}
+
+/* &quot;markdown&quot;-like styled page content */
+h1, h2, h3, h4, h5, h6 {
+    cursor: text;
+    font-weight: bold;
+    line-height: 1.7;
+    margin: 1em 0 15px;
+    padding: 0;
+    position: relative;
+    text-rendering: optimizelegibility;
+}
+h1 {
+    border-bottom: 1px solid #ddd;
+    font-size: 2.5em;
+}
+h2 {
+    border-bottom: 1px solid #eee;
+    font-size: 2em;
+}
+h3 {
+    font-size: 1.5em;
+}
+h4 {
+    font-size: 1.2em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+    color: #777;
+    font-size: 1em;
+}
+code, tt {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    display: inline-block;
+    line-height: 1.3;
+    margin: 0;
+    max-width: 100%;
+    overflow: auto;
+    padding: 0px 1px 0px 1px;
+    vertical-align: middle;
+}
+code {
+    white-space: nowrap;
+}
+
+pre {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    line-height: 19px;
+    overflow: auto;
+    padding: 6px 10px;
+}
+pre &gt; code {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: medium none;
+    margin: 0;
+    padding: 0;
+    white-space: pre;
+}
+pre code, pre tt {
+    background-color: rgba(0, 0, 0, 0);
+    border: medium none;
+    display: inline;
+    line-height: inherit;
+    margin: 0;
+    max-width: initial;
+    overflow: initial;
+    padding: 0;
+    word-wrap: normal;
+}
+code:before, code:after, tt:before, tt:after {
+    content: &quot; &quot;;
+}
+pre code:before, pre code:after, pre tt:before, pre tt:after {
+    content: normal;
+}
+code:before, code:after, tt:before, tt:after {
+    content: &quot; &quot;;
+}
+pre code:before, pre code:after, pre tt:before, pre tt:after {
+    content: normal;
+}
+&lt;/style&gt;
+
+&lt;p&gt;Welcome to &lt;a href=&quot;https://github.com/samrocketman/jervis/wiki&quot;&gt;Jervis: Jenkins as a service&lt;/a&gt;.  This Jenkins instance was bootstrapped using the &lt;a href=&quot;https://github.com/samrocketman/jenkins-bootstrap-jervis&quot;&gt;jenkins-bootstrap-jervis project&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Developer&apos;s first steps&lt;/h3&gt;
+
+&lt;p&gt;Creating a project in Jenkins is simple.  Follow these three steps:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Add a &lt;tt&gt;.jervis.yml&lt;/tt&gt; file to your GitHub repository following the &lt;a href=&quot;https://github.com/samrocketman/jervis/wiki/User-Guide&quot;&gt;User Guide&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;Execute the &lt;tt&gt;Generate Jenkins Jobs from YAML&lt;/tt&gt; onboarding job by clicking &lt;img alt=&quot;Schedule a build with parameters&quot; src=&quot;/images/16x16/clock.png&quot; /&gt; icon.&lt;/li&gt;
+  &lt;li&gt;If creating your job succeeds, then visit the &lt;a href=&quot;/view/GitHub%20Organizations/&quot;&gt;GitHub Organizations View&lt;/a&gt; in the tabs above.
+&lt;/ol&gt;
+
+&lt;h3&gt;Documentation&lt;/h3&gt;
+
+&lt;p&gt;Visit the &lt;a href=&quot;https://github.com/samrocketman/jervis/wiki&quot;&gt;Jervis wiki&lt;/a&gt; for comprehensive documentation on how to configure and manage Jenkins as a service.&lt;/p&gt;</richText>
+      <parserName>HTML</parserName>
+    </org.korosoft.jenkins.plugin.rtp.StaticTextPortlet>
+  </topPortlets>
+  <bottomPortlets/>
+</hudson.plugins.view.dashboard.Dashboard>
