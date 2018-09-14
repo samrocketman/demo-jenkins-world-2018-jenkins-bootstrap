@@ -1,6 +1,6 @@
 dependencies {
     //get Jenkins
-    getjenkins 'org.jenkins-ci.main:jenkins-war:2.121.3@war'
+    getjenkins 'org.jenkins-ci.main:jenkins-war:2.138.1@war'
 
     //custom plugins (if any) provided by custom-plugins.txt; format: G:A:V@hpi or G:A:V@jpi
     getplugins 'org.jenkins-ci.plugins:pipeline-multibranch-defaults:1.2-SNAPSHOT@hpi'
@@ -85,7 +85,7 @@ dependencies {
     getplugins 'org.jenkins-ci.plugins:jira:3.0.1@hpi'
     getplugins 'org.jenkins-ci.plugins:job-dsl:1.70@hpi'
     getplugins 'org.jenkins-ci.plugins:jsch:0.1.54.2@hpi'
-    getplugins 'org.jenkins-ci.plugins:junit:1.24@hpi'
+    getplugins 'org.jenkins-ci.plugins:junit:1.25@hpi'
     getplugins 'org.jenkins-ci.plugins:mailer:1.21@hpi'
     getplugins 'org.jenkins-ci.plugins:matrix-auth:2.3@hpi'
     getplugins 'org.jenkins-ci.plugins:matrix-project:1.13@hpi'
@@ -111,7 +111,7 @@ dependencies {
     getplugins 'org.jenkins-ci.plugins:structs:1.14@hpi'
     getplugins 'org.jenkins-ci.plugins:token-macro:2.5@hpi'
     getplugins 'org.jenkins-ci.plugins:variant:1.1@hpi'
-    getplugins 'org.jenkins-ci.plugins:view-job-filters:2.0.0@hpi'
+    getplugins 'org.jenkins-ci.plugins:view-job-filters:2.0.1@hpi'
     getplugins 'org.jenkins-ci.plugins:windows-slaves:1.3.1@hpi'
     getplugins 'org.jenkins-ci.ui:ace-editor:1.1@hpi'
     getplugins 'org.jenkins-ci.ui:handlebars:1.1.1@hpi'
