@@ -3,5 +3,5 @@
 // ref: https://github.com/samrocketman/jenkins-bootstrap-jervis/issues/19
 // ref: https://issues.jenkins-ci.org/browse/JENKINS-48974
 // ref: https://issues.apache.org/jira/browse/GROOVY-7407
-groovy.grape.Grape.grab(group:'net.gleske', module:'jervis', version:'1.2')
-groovy.grape.Grape.grab(group:'org.yaml', module:'snakeyaml', version:'1.21')
+groovy.grape.Grape.grab(group:'net.gleske', module:'jervis', version:'1.2', transitive: false)
+groovy.grape.Grape.grab(group:'org.yaml', module:'snakeyaml', version:'1.21', transitive: false)
