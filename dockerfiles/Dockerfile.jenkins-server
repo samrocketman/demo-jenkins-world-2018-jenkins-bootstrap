@@ -1,9 +1,10 @@
 #https://github.com/anapsix/docker-alpine-java
 FROM anapsix/alpine-java:8_jdk
 
-ADD build/distributions/*.tar /usr/
-
 ARG JENKINS_HOME=/var/lib/jenkins
+ARG TAR_VERSION
+
+ADD build/distributions/jenkins-bootstrap-${TAR_VERSION}.tar /usr/
 
 RUN set -ex; \
 addgroup -g 7000 -S jenkins; \

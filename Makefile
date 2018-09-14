@@ -10,7 +10,7 @@ build/distributions/jenkins-bootstrap-$(IMAGE_VERSION).tar: dependencies.gradle 
 
 docker: build/distributions/jenkins-bootstrap-$(IMAGE_VERSION).tar
 	docker build -t samrocketman/demo-jenkins-world-2018:jenkins-agent -f ./dockerfiles/Dockerfile.jenkins-agent .
-	docker build -t samrocketman/demo-jenkins-world-2018:jenkins-server -f ./dockerfiles/Dockerfile.jenkins-server .
+	docker build --build-arg 'TAR_VERSION=$(IMAGE_VERSION)' -t samrocketman/demo-jenkins-world-2018:jenkins-server -f ./dockerfiles/Dockerfile.jenkins-server .
 
 clean:
 	docker rmi samrocketman/demo-jenkins-world-2018:jenkins-agent samrocketman/demo-jenkins-world-2018:jenkins-server
