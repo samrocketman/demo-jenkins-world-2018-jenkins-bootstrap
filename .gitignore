@@ -6,6 +6,7 @@
 /jenkins-cli.jar
 /jenkins.pid
 /jenkins.war*
+/lib
 /my_jenkins_home
 /plugins
 /ssh_config

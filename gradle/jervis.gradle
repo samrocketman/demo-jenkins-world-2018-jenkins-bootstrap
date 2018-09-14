@@ -1,0 +1,20 @@
+//Add due to deprecated Grab support
+//https://github.com/samrocketman/jervis/issues/60
+//copied from https://github.com/samrocketman/jervis/blob/11f68fdd534ac804c231cab1d6f53d2b42bd20b1/gradle/jervis.gradle
+configurations {
+    libs
+}
+dependencies {
+    libs 'net.gleske:jervis:1.1'
+    libs 'org.yaml:snakeyaml:1.18'
+}
+
+task libs(type: Copy) {
+    into 'lib'
+    from configurations.libs
+}
+
+task cleanLibs(type: Delete) {
+    delete 'lib'
+}
+clean.dependsOn cleanLibs
