@@ -14,8 +14,8 @@ services:
       - -exc
       - |
         cd /tmp
-        apk add docker
         nohup dockerd &
+        until test -e /var/run/docker.sock; do sleep 1; done
         docker pull samrocketman/demo-jenkins-world-2018:jenkins-agent
         sed -i 's/^\(docker:.*\)/\1jenkins/' /etc/group
         su - -s /bin/bash jenkins -c '/bin/bash -c "JAVA_HOME=/opt/jdk /run.sh"'
