@@ -9,4 +9,4 @@ sed -i 's/^\(wheel:.*\)/\1,jenkins/' /etc/group
 
 USER jenkins
 WORKDIR /home/jenkins
-RUN /bin/bash
+CMD /bin/bash
