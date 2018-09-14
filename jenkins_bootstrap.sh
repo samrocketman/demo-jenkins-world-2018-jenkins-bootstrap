@@ -8,6 +8,9 @@ function die() {
   echo "ERROR: ${*}" >&2
   exit 1
 }
+function checkbin() {
+  type -P "$1" > /dev/null
+}
 
 if [[ \
     -z "${DEMO_GITHUB_USER}" || \
@@ -15,7 +18,7 @@ if [[ \
     -z "${DEMO_UUID}"
     ]]; then
 
-    cat <<'EOF'
+  cat <<'EOF'
 ERROR: missing one of the required environment variables.
     DEMO_GITHUB_TOKEN
     DEMO_GITHUB_USER
@@ -24,9 +27,9 @@ EOF
   exit 1
 fi
 
-type -P docker || die "Docker is not installed."
-type -P docker-compose || die "Missing docker-compose command from PATH."
-type -P envsubst || die "Missing gettext package which provides envsubst command."
+checkbin docker || die "Docker is not installed."
+checkbin docker-compose || die "Missing docker-compose command from PATH."
+checkbin envsubst || die "Missing gettext package which provides envsubst command."
 test -d .git || die "${0##*/} must be run from the root of this repository."
 
 #
@@ -41,7 +44,7 @@ create_job --job-name '_jervis_generator' --xml-data './configs/job_jervis_confi
 create_view --view-name 'Welcome' --xml-data './configs/view_welcome_config.xml'
 create_view --view-name 'GitHub Organizations' --xml-data "./configs/view_github_organizations_config.xml"
 jenkins_console --script "${SCRIPT_LIBRARY_PATH}/configure-primary-view.groovy"
-jenkins_console -s './scripts/admin-script-approval.groovy'
+jenkins_console -s "${SCRIPT_LIBRARY_PATH}/admin-script-approval.groovy"
 
 # configure misc Jenkins settings
 jenkins_console -s "${SCRIPT_LIBRARY_PATH}/configure-markup-formatter.groovy"

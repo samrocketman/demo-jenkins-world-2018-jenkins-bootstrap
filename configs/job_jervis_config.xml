@@ -5,13 +5,6 @@
   <displayName>Generate Jenkins Jobs from YAML</displayName>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.security.AuthorizationMatrixProperty>
-      <inheritanceStrategy class="org.jenkinsci.plugins.matrixauth.inheritance.InheritParentStrategy"/>
-      <permission>hudson.model.Item.Build:authenticated</permission>
-      <permission>hudson.model.Item.Discover:anonymous</permission>
-      <permission>hudson.model.Item.Read:authenticated</permission>
-      <permission>hudson.model.Item.ViewStatus:anonymous</permission>
-    </hudson.security.AuthorizationMatrixProperty>
     <jenkins.model.BuildDiscarderProperty>
       <strategy class="hudson.tasks.LogRotator">
         <daysToKeep>-1</daysToKeep>
@@ -20,27 +13,27 @@
         <artifactNumToKeep>-1</artifactNumToKeep>
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
-    <com.coravy.hudson.plugins.github.GithubProjectProperty plugin="github@1.29.0">
-      <projectUrl>https://github.com/samrocketman/jervis/</projectUrl>
+    <com.coravy.hudson.plugins.github.GithubProjectProperty plugin="github@1.29.2">
+      <projectUrl>https://github.com/samrocketman/demo-jenkins-world-2018-jenkins-bootstrap/</projectUrl>
       <displayName></displayName>
     </com.coravy.hudson.plugins.github.GithubProjectProperty>
-    <com.synopsys.arc.jenkinsci.plugins.jobrestrictions.jobs.JobRestrictionProperty plugin="job-restrictions@0.6"/>
+    <com.synopsys.arc.jenkinsci.plugins.jobrestrictions.jobs.JobRestrictionProperty plugin="job-restrictions@0.7"/>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>project</name>
           <description>Generate Jenkins jobs for the project.  Format is org/project.</description>
-          <defaultValue>samrocketman/jervis-example-project</defaultValue>
+          <defaultValue>samrocketman/demo-jenkins-world-2018-groovy-jar</defaultValue>
           <trim>true</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.8.0">
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.9.1">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
-        <url>https://github.com/samrocketman/jervis.git</url>
+        <url>https://github.com/samrocketman/demo-jenkins-world-2018-jenkins-bootstrap.git</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
@@ -50,13 +43,21 @@
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
     <browser class="hudson.plugins.git.browser.GithubWeb">
-      <url>https://github.com/samrocketman/jervis</url>
+      <url>https://github.com/samrocketman/demo-jenkins-world-2018-jenkins-bootstrap</url>
     </browser>
     <submoduleCfg class="list"/>
-    <extensions/>
+    <extensions>
+      <hudson.plugins.git.extensions.impl.SubmoduleOption>
+        <disableSubmodules>false</disableSubmodules>
+        <recursiveSubmodules>true</recursiveSubmodules>
+        <trackingSubmodules>false</trackingSubmodules>
+        <reference></reference>
+        <parentCredentials>false</parentCredentials>
+      </hudson.plugins.git.extensions.impl.SubmoduleOption>
+      <hudson.plugins.git.extensions.impl.CleanBeforeCheckout/>
+    </extensions>
   </scm>
-  <assignedNode>jervis_generator</assignedNode>
-  <canRoam>false</canRoam>
+  <canRoam>true</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
@@ -64,10 +65,10 @@
   <concurrentBuild>true</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>./gradlew -x check -x test -x cobertura -x groovydoc -x javadocJar -x sourcesJar clean libs Jar</command>
+      <command>./gradlew clean libs</command>
     </hudson.tasks.Shell>
-    <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.68">
-      <targets>jobs/firstjob_dsl.groovy</targets>
+    <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.70">
+      <targets>jervis/jobs/firstjob_dsl.groovy</targets>
       <usingScriptText>false</usingScriptText>
       <sandbox>false</sandbox>
       <ignoreExisting>false</ignoreExisting>
@@ -78,20 +79,24 @@
       <removedViewAction>IGNORE</removedViewAction>
       <removedConfigFilesAction>IGNORE</removedConfigFilesAction>
       <lookupStrategy>SEED_JOB</lookupStrategy>
-      <additionalClasspath>build/libs/*.jar
-lib/*.jar</additionalClasspath>
+      <additionalClasspath>lib/*.jar</additionalClasspath>
     </javaposse.jobdsl.plugin.ExecuteDslScripts>
   </builders>
   <publishers>
-    <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.4">
-      <script plugin="script-security@1.43">
+    <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.4.2">
+      <script plugin="script-security@1.46">
         <script>import com.cloudbees.hudson.plugins.folder.computed.PeriodicFolderTrigger
 import jenkins.model.Jenkins
+import org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject
 
 manager.addShortText(manager.envVars[&quot;project&quot;], &apos;#3b3b3b&apos;, &apos;#eee&apos;, &apos;solid 1px&apos;, &apos;#f3f3f3&apos;)
 
-//regiser GitHub webhook in repository
-Jenkins.instance.getItemByFullName(manager.envVars[&quot;project&quot;]).getSCMSources()[0].afterSave()</script>
+//register GitHub webhook in repository
+Jenkins.instance.getAllItems(WorkflowMultiBranchProject).findAll {
+    it.name == manager.envVars[&quot;project&quot;].tokenize(&apos;/&apos;)[1]
+}.each {
+    it.getSCMSources()[0].afterSave()
+}</script>
         <sandbox>false</sandbox>
       </script>
       <behavior>2</behavior>
