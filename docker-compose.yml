@@ -1,6 +1,7 @@
 version: '2.2'
 volumes:
   jenkins-data:
+  docker-in-docker-data:
 services:
   jenkins:
     init: true
@@ -9,5 +10,17 @@ services:
       dockerfile: jenkins-bootstrap-shared/Dockerfile
     ports:
       - 8080:8080
+    user: root
+    command:
+      - /bin/bash
+      - -exc
+      - |
+        cd /tmp
+        apk add docker
+        nohup dockerd &
+        sed -i 's/^\(docker:.*\)/\1jenkins/' /etc/group
+        su - -s /bin/bash jenkins -c '/bin/bash -c "JAVA_HOME=/opt/jdk /run.sh"'
+    privileged: true
     volumes:
       - 'jenkins-data:/var/lib/jenkins'
+      - 'docker-in-docker-data:/var/lib/docker'
