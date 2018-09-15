@@ -61,5 +61,8 @@ Vagrant.configure("2") do |config|
       [ -n "$(docker-compose ps -q)" ] || docker-compose up -d
       ./jenkins_bootstrap.sh
     )
+
+    # this is still an ongoing bug in Jenkins https://issues.jenkins-ci.org/browse/JENKINS-47154
+    ntpdate -s time.nist.gov
   SHELL
 end
