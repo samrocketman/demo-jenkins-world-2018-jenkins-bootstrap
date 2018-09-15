@@ -28,7 +28,7 @@ services:
         su - -s /bin/bash jenkins -c '/bin/bash -exc "cd demo-reference-repo.git; git fetch https://github.com/samrocketman/jenkins-bootstrap-shared +refs/*:refs/*"'
         su - -s /bin/bash jenkins -c '/bin/bash -exc "cd demo-reference-repo.git; git fetch https://github.com/samrocketman/jervis +refs/*:refs/*"'
         # grant Jenkins access to use docker in docker
-        sed -i 's/^\(docker:.*\)/\1jenkins/' /etc/group
+        grep 'docker:.*\bjenkins\b' /etc/group || sed -i 's/^\(docker:.*\)/\1jenkins/' /etc/group
         su - -s /bin/bash jenkins -c '/bin/bash -c "JAVA_HOME=/opt/jdk /run.sh"'
     privileged: true
     volumes:
