@@ -25,6 +25,28 @@ This project provides the following functionality:
 - An immutable infrastructure image for the master running in Docker.
 - An immutable infrastructure image for the agent running in Docker.
 
+# Prerequisites
+
+### Create secret-env.sh
+
+Add `secret-env.sh` at the root of this repository with the following contents.
+
+    export DEMO_GITHUB_USER=<github user>
+    export DEMO_GITHUB_TOKEN=<github personal access token>
+    export DEMO_UUID=$(uuidgen)
+
+The [GitHub personal access token][github-pat] should have scopes `repo`,
+`read:org`, and `user:email`.  In production I also add the `admin:repo_hook`
+scope as well.  However, that's not necessary for the demo.
+
+### System requirements
+
+- If using Linux, [Docker][docker] and [docker-compose][compose] must be
+  installed and running.
+- If using Mac, [Vagrant][vagrant] and [VirtualBox][vbox] must be installed.
+  Docker for mac is not stable enough to run this demo smoothly.  Refer to the
+  [instructions for vagrant](docs/vagrant.md) instead of this README.
+
 # Start Jenkins
 
     docker-compose up -d
@@ -36,5 +58,10 @@ environment.
 
     docker-compose exec -u jenkins jenkins /bin/bash
 
+[compose]: https://github.com/docker/compose/releases/
+[docker]: https://docs.docker.com/install/linux/docker-ce/centos/
+[github-pat]: https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/
 [jervis]: https://github.com/samrocketman/jervis
 [pipeline-lib]: https://jenkins.io/doc/book/pipeline/shared-libraries/
+[vagrant]: https://www.vagrantup.com/
+[vbox]: https://www.virtualbox.org/wiki/Downloads
