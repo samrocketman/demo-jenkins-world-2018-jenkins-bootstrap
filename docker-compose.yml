@@ -13,9 +13,11 @@ services:
       - /bin/bash
       - -exc
       - |
-        cd /tmp
-        nohup dockerd &
-        until test -e /var/run/docker.sock; do sleep 1; done
+        rm -f /var/run/docker.pid /var/run/docker/containerd/docker-containerd.pid
+        nohup dockerd -D &
+        until docker info &> /dev/null; do
+            sleep 1
+        done
         # preseed jenkins agent
         docker pull samrocketman/demo-jenkins-world-2018:jenkins-agent
         # preseed build dependencies for generating jobs to speed up demo
