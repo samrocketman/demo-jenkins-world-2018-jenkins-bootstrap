@@ -10,7 +10,7 @@ pipeline_shared_libraries = [
         ]
     ],
     'Jervis shared pipeline': [
-        'defaultVersion': '7989236b92f466b18a2a816560b3729fd16c7f9a',
+        'defaultVersion': 'aa5a6d92357a1284e277113b5c7b849a04c71251',
         'implicit': true,
         'allowVersionOverride': false,
         'includeInChangesets': true,
