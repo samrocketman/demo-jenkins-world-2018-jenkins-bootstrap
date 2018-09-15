@@ -44,6 +44,7 @@ Vagrant.configure("2") do |config|
       yum makecache
       yum install -y yum-utils device-mapper-persistent-data lvm2 git2u docker-ce
       yum install -y vim bind-utils net-tools nc ntpdate
+      usermod -a -G docker vagrant
       systemctl start ntpdate
       systemctl enable ntpdate
       systemctl start docker.service
@@ -58,7 +59,7 @@ Vagrant.configure("2") do |config|
       set +x
       source secret-env.sh
       set -x
-      [ -n "$(docker-compose ps -q)" ] || docker-compose up -d
+      docker-compose exec jenkins /bin/true || docker-compose up -d
       ./jenkins_bootstrap.sh
     )
 
