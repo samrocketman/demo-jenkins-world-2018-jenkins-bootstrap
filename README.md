@@ -12,6 +12,29 @@ height=48 width=72 alt="Docker Logo" /> <img
 src="https://user-images.githubusercontent.com/875669/35621372-f72f6d16-0638-11e8-93d6-2ae335fc2382.png"
 height=48 width=48 alt="Vagrant Logo" />
 
+Welcome to [Sam Gleske's][github] [Jenkins World 2018 presentation][about]
+technical demo.
+
+# Presentation abstract
+
+**Title:** Scaling developer onboarding in Fortune 50 and smaller organizations
+
+This presentation is going to cover how a small CI/CD team can manage Jenkins
+infrastructure to onboard thousands of engineers and reduce time to market as a
+direct result.
+
+Sections of the presentation:
+
+- Eye Candy: The developer onboarding experience
+- Jenkins development announcements
+- Development workflow for delivering software at scale.
+- Managing immutable infrastructure for Jenkins as a service within a large
+  organization.
+- Let's be real: what do I need to learn?
+- Tech Demo: Show and tell a real workflow
+
+# What does this repository represent?
+
 This project provides the following functionality:
 
 - A Jenkins master which can be bootstrapped using Docker and docker-compose.
@@ -24,6 +47,7 @@ This project provides the following functionality:
   See what Jervis provides in [`./jervis/jobs/`](./jervis/jobs/).
 - An immutable infrastructure image for the master running in Docker.
 - An immutable infrastructure image for the agent running in Docker.
+- Configuration as code for a Jenkins server.
 
 # Prerequisites
 
@@ -51,16 +75,18 @@ scope as well.  However, that's not necessary for the demo.
 
     docker-compose up -d
 
-# Log into Jenkins master
+# Shell access
 
-To gain shell access to the jenkins master including the docker in docker
+To gain shell access to the jenkins server including the docker in docker
 environment.
 
     docker-compose exec -u jenkins jenkins /bin/bash
 
+[about]: https://devopsworldjenkinsworld2018.sched.com/event/G4qY/scaling-developer-onboarding-in-fortune-50-and-smaller-organizations
 [compose]: https://github.com/docker/compose/releases/
 [docker]: https://docs.docker.com/install/linux/docker-ce/centos/
 [github-pat]: https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/
+[github]: https://github.com/samrocketman
 [jervis]: https://github.com/samrocketman/jervis
 [pipeline-lib]: https://jenkins.io/doc/book/pipeline/shared-libraries/
 [vagrant]: https://www.vagrantup.com/
