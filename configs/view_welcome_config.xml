@@ -23,8 +23,8 @@
   <rightPortlets/>
   <topPortlets>
     <org.korosoft.jenkins.plugin.rtp.StaticTextPortlet plugin="rich-text-publisher-plugin@1.4">
-      <id>dashboard_portlet_4858</id>
-      <name>Bootstrapped Jenkins for Jervis</name>
+      <id>dashboard_portlet_18650</id>
+      <name>JW 2018 Project Onboarding Instructions</name>
       <text>&lt;style&gt;
 /* hide distracting elements in the UI */
 div#side-panel, div#right-top-nav, div#description {
@@ -214,7 +214,7 @@ pre code:before, pre code:after, pre tt:before, pre tt:after {
 }
 &lt;/style&gt;
 
-&lt;p&gt;Welcome to &lt;a href=&quot;https://github.com/samrocketman/jervis/wiki&quot;&gt;Jervis: Jenkins as a service&lt;/a&gt;.  This Jenkins instance was bootstrapped using the &lt;a href=&quot;https://github.com/samrocketman/jenkins-bootstrap-jervis&quot;&gt;jenkins-bootstrap-jervis project&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Welcome to &lt;a href=&quot;https://github.com/samrocketman/jervis/wiki&quot;&gt;Jenkins as a service&lt;/a&gt;.  These first steps are necessary to onboard your project.&lt;/p&gt;
 
 &lt;h3&gt;Developer&apos;s first steps&lt;/h3&gt;
 
@@ -418,7 +418,7 @@ pre code:before, pre code:after, pre tt:before, pre tt:after {
 }
 &lt;/style&gt;
 
-&lt;p&gt;Welcome to &lt;a href=&quot;https://github.com/samrocketman/jervis/wiki&quot;&gt;Jervis: Jenkins as a service&lt;/a&gt;.  This Jenkins instance was bootstrapped using the &lt;a href=&quot;https://github.com/samrocketman/jenkins-bootstrap-jervis&quot;&gt;jenkins-bootstrap-jervis project&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Welcome to &lt;a href=&quot;https://github.com/samrocketman/jervis/wiki&quot;&gt;Jenkins as a service&lt;/a&gt;.  These first steps are necessary to onboard your project.&lt;/p&gt;
 
 &lt;h3&gt;Developer&apos;s first steps&lt;/h3&gt;
 
