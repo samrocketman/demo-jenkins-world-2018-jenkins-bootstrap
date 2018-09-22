@@ -15,7 +15,11 @@ height=48 width=48 alt="Vagrant Logo" />
 Welcome to [Sam Gleske's][github] [Jenkins World 2018 presentation][about]
 technical demo.
 
-# Presentation abstract
+# Presentation
+
+- [Presentation slides][slides]
+
+### Abstract
 
 **Title:** Scaling developer onboarding in Fortune 50 and smaller organizations
 
@@ -71,9 +75,16 @@ scope as well.  However, that's not necessary for the demo.
   Docker for mac is not stable enough to run this demo smoothly.  Refer to the
   [instructions for vagrant](docs/vagrant.md) instead of this README.
 
-# Start Jenkins
+# Start Demo
+
+Provision Jenkins with docker in docker.
 
     docker-compose up -d
+
+Configure Jenkins.
+
+    source secret-env.sh
+    ./jenkins_bootstrap.sh
 
 # Shell access
 
@@ -89,5 +100,6 @@ environment.
 [github]: https://github.com/samrocketman
 [jervis]: https://github.com/samrocketman/jervis
 [pipeline-lib]: https://jenkins.io/doc/book/pipeline/shared-libraries/
+[slides]: ./presentation/jenkins-world-2018-scaling-developer-onboarding.pdf
 [vagrant]: https://www.vagrantup.com/
 [vbox]: https://www.virtualbox.org/wiki/Downloads

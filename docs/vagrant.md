@@ -2,7 +2,8 @@
 
 Start vagrant with the provision flag (even if resuming).
 
-    vagrant up --provision
+    vagrant up
+    vagrant provision
 
 Jenkins should be up after vagrant has completed.  Visit
 `http://localhost:8080/` to view the demo.
@@ -15,6 +16,12 @@ command.
 Clean up when finished
 
     vagrant destroy
+
+Before starting the demo run the following.
+
+    vagrant provision
+
+It will correct system time by syncing via NTP.
 
 # Troubleshooting
 
