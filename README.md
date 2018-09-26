@@ -15,11 +15,10 @@ height=48 width=48 alt="Vagrant Logo" />
 Welcome to [Sam Gleske's][github] [Jenkins World 2018 presentation][about]
 technical demo.
 
-# Presentation
-
 - [Presentation slides][slides]
+- [Screenshots of tech demo][demo] (prepared in case demo doesn't work)
 
-### Abstract
+# Presentation abstract
 
 **Title:** Scaling developer onboarding in Fortune 50 and smaller organizations
 
@@ -95,6 +94,7 @@ environment.
 
 [about]: https://devopsworldjenkinsworld2018.sched.com/event/G4qY/scaling-developer-onboarding-in-fortune-50-and-smaller-organizations
 [compose]: https://github.com/docker/compose/releases/
+[demo]: ./presentation/tech-demo.pdf
 [docker]: https://docs.docker.com/install/linux/docker-ce/centos/
 [github-pat]: https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/
 [github]: https://github.com/samrocketman
