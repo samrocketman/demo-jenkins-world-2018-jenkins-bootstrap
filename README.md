@@ -40,15 +40,15 @@ Sections of the presentation:
 
 This project provides the following functionality:
 
-- A Jenkins master which can be bootstrapped using Docker and docker-compose.
-  The master also serves as an agent and runs docker in docker to support
-  ephemeral agents inside of the master docker container.
+- A Jenkins server which can be bootstrapped using Docker and docker-compose.
+  The server also is an agent and runs docker in docker to support ephemeral
+  agents inside of the server docker container.
 - A [Jenkins Pipeline Shared Global Library][pipeline-lib] which is meant to
   extend the [Jervis shared pipeline library][jervis].  See what Jervis provides
   in [`./jervis/vars/`](./jervis/vars/).
 - Job DSL scripts which are extensions of the [Jervis job DSL scripts][jervis].
   See what Jervis provides in [`./jervis/jobs/`](./jervis/jobs/).
-- An immutable infrastructure image for the master running in Docker.
+- An immutable infrastructure image for the server running in Docker.
 - An immutable infrastructure image for the agent running in Docker.
 - Configuration as code for a Jenkins server.
 
